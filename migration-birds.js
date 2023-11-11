@@ -1,24 +1,24 @@
 // https://www.hackerrank.com/challenges/migratory-birds/problem?isFullScreen=true
 
 const migrationBirds = (arr) => {
-  let ans = 1000000;
-  let ansCount = 0;
-  let previousCalculated = [];
+  let frequencyMap = new Map();
+  let maxFrequency = 0;
+  let mostFrequentBird = null;
 
-  for (let i = 0; i < arr.length; i++) {
-    let count = 1;
-
-    for (let j = i; j < arr.length; j++) {
-      if (arr[j] == arr[i] && !previousCalculated.includes(arr[i])) count += 1;
+  for (let bird of arr) {
+    if (!frequencyMap.has(bird)) {
+      frequencyMap.set(bird, 1);
+    } else {
+      frequencyMap.set(bird, frequencyMap.get(bird) + 1);
     }
-    previousCalculated.push(arr[i]);
-    console.log(arr[i], count, ansCount, ans);
-    if (count >= ansCount) {
-      ansCount = count;
-      ans = arr[i];
+
+    if (frequencyMap.get(bird) > maxFrequency) {
+      maxFrequency = frequencyMap.get(bird);
+      mostFrequentBird = bird;
     }
   }
-  return ans;
+
+  return mostFrequentBird;
 };
 
 console.log(migrationBirds([1, 4, 4, 4, 5, 3])); // 4
