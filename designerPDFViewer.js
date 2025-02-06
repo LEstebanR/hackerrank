@@ -29,3 +29,17 @@ console.log(
     "abc"
   )
 );
+
+const howOld = (age, year) => {
+  const currentYear = new Date().getFullYear();
+  const yearDifference = year - currentYear;
+  const newAge = age + yearDifference;
+  const ageDifference = newAge - age;
+  if (newAge < 0) {
+    return `The year ${year} was ${-newAge} years before you were born`;
+  } else if (ageDifference > 0) {
+    return `You will be ${newAge} in the year ${year}`;
+  } else {
+    return `You were ${newAge} in the year ${year}`;
+  }
+};
